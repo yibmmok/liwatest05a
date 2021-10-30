@@ -1,19 +1,28 @@
 {
-  "name": "liwabase",
+  "name": "liwatest05a",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "concurrently \"npm run sass\" \"npm run serve\"",
+    "serve": "live-server --open=/src/app.html --ignore=.git,node_modules",
+    "sass": "node-sass -i -w --output-style=compressed src/styles/style.scss src/styles/style.min.css",
+    "lint": "node-sass -i --output-style=compressed src/styles/style.scss src/styles/style.min.css && npm run sasslint",
+    "sasslint": "sass-lint -c .sass-lint.yml -v -f table"
   },
   "keywords": [],
-  "author": "",
+  "author": "James Lin",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.14"
+    "concurrently": "^6.3.0",
+    "live-server": "^1.2.1",
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.14",
+    "normalize.css": "^8.0.1",
+    "sass-lint": "^1.13.1",
+    "tjw-sasslint-rules": "^2.1.0"
   }
 }
